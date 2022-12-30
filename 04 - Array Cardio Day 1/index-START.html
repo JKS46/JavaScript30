@@ -37,31 +37,69 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-    let fifty = inventors.filter(inventor => inventor.year >1499 && inventor.year <1600)
+
+    let fifty = inventors.filter(inventor => inventor.year >1499 && inventor.year <1600);
+
     console.table(fifty);
+    console.log("born in 1500's");
+
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
-    let firstLast = inventors.map(inventor => inventor.first+" "+inventor.last)
-    console.table(firstLast)
+
+    let firstLast = inventors.map(inventor => inventor.first+" "+inventor.last);
+
+    console.table(firstLast);
+    console.log("first and last name");
+
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-    
+   
+    let born = inventors.sort((a,b)=> a.year - b.year);
+
+    console.table(born); 
+    console.log("sort by birth year");
+
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
+    let totalYears = inventors.reduce((total,inventor)=>{
+      return total+(inventor.passed-inventor.year);},0);
+
+    console.log("total years");
+    console.log(totalYears);
+
     // 5. Sort the inventors by years lived
+    
+    let yearsLived = inventors.sort((a,b)=> (a.year - a.passed) - (b.year - b.passed));
+    console.table(yearsLived);
+    console.log("sort based on years lived up👆")
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+      /* const boulde = document.querySelector(".mw-category");
+      const links = Array.from(boulde.querySelectorAll("a"));
+      const bouldede = links.map(a=> a.textContent).filter(a=> a.includes("de"));
+      console.table(bouldede); */
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    let sortedPeeps = people.sort((a,b)=> a>b?1:-1);
+    console.table(sortedPeeps);
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    let reducedData = data.reduce((obj,item)=>{
+      if(!obj[item]){
+        obj[item]=0;
+      }
+      obj[item]++;
+      return obj;
+    },{});
+    console.table(reducedData);
+    
   </script>
 </body>
 </html>
